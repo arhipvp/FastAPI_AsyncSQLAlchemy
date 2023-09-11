@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "Live Preview",
+			"workspacePath": "c:\\Dev\\FastAPI_AsyncSQLAlchemy",
+			"problemMatcher": [],
+			"label": "Live Preview: Запустить сервер",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
