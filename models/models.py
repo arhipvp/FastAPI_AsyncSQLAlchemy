@@ -1,6 +1,7 @@
 from sqlalchemy import (JSON, TIMESTAMP, Boolean, Column, ForeignKey, Integer,
                         MetaData, String, Table, Time)
 from sqlalchemy.orm import declarative_base, relationship
+import datetime
 
 metadata = MetaData()
 
@@ -18,8 +19,8 @@ users = Table(
     Column('id', primary_key=True),
     Column('username', String, nullable=False),
     Column('password', String, nullable=False),
-    Column('regastared_at', TIMESTAMP, default=datetime.utcnow),
-    Column('role_id', Integer, ForeignKey=('roles.id')),
+    Column('regastared_at', TIMESTAMP, default=datetime.datetime.utcnow()),
+    Column('role_id', Integer, ForeignKey('roles.id')),
 )
 
 
