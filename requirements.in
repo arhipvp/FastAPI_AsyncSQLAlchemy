@@ -4,3 +4,5 @@ sqlalchemy
 postgres
 SQLAlchemy[postgresql]
 alembic
+fastapi-users[SQLAlchemy]
+asyncpg
