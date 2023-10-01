@@ -9,7 +9,7 @@ from src.database import Base
 
 class InsRequest(Base):
     __tablename__ = "ins_request"
-    __metadata__ = Base.metadata
+    #__metadata__ = Base.metadata
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name = mapped_column(String)
     note = mapped_column(String)

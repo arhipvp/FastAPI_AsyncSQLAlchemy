@@ -1,17 +1,24 @@
 
-from sqlalchemy import Column, Integer
-from sqlalchemy.orm import as_declarative
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.orm import Mapped, as_declarative, mapped_column, Session, declarative_base
 
-from src.database import Base, engine, get_async_session
+from src.config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
 
-session = get_async_session()
+DATABASE_URL = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+engine = create_engine(DATABASE_URL)
 
-print(session)
-print(Base.metadata.info)
+Base = declarative_base()
 
-
-@as_declarative(metadata=Base.metadata)
-class TestUser:
+class TestUser(Base):
     __tablename__ = 'testusers'
-    id = Column(Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column()
+
+
+Base.metadata.create_all(engine)
+testuser = TestUser(id=1, name='ffff')
+
+with Session(engine) as session:
     
+    session.add(testuser)
+    session.commit()
