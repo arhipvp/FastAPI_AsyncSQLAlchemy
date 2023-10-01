@@ -1,6 +1,7 @@
 from typing import Optional
 
-from .database import User, get_user_db
+from .models import User
+from .utils import get_user_db
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, IntegerIDMixin
 
@@ -12,7 +13,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     verification_token_secret = SECRET
 
     async def on_after_register(self, user: User, request: Optional[Request] = None):
-        print(f"User {user.id} has registered.")
+        print(f"User {User.id} has registered.")
 
 
 
